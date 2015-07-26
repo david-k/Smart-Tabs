@@ -310,7 +310,6 @@ fun! s:RetabIndent( bang, firstl, lastl, tab )
   let checkspace=((!&expandtab)? "^\<tab>* ": "^ *\<tab>")
   let l = a:firstl
   let force= a:tab != '' && a:tab != 0 && (a:tab != &tabstop)
-  let checkalign = ( &expandtab || !(&autoindent || &indentexpr || &cindent)) && (!exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0)
   let newtabstop = (force?(a:tab):(&tabstop))
   while l <= a:lastl
     let txt=getline(l)
@@ -329,10 +328,9 @@ fun! s:RetabIndent( bang, firstl, lastl, tab )
     endif
     if store
       call setline(l, txt )
-      if checkalign
-        call s:CheckAlign(l)
-      endif
     endif
+        
+    call s:CheckAlign(l)
 
     let l=l+1
   endwhile
