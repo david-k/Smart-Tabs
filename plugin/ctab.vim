@@ -268,7 +268,7 @@ if ! exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0
       endif
       return "\<CR>"
     else
-      return "\<CR>\<c-r>=<SNR>".s:SID().'_CheckAlign(line(''.''))'."\<CR>\<ESC>I"
+      return "\<CR>\<c-r>=<SNR>".s:SID().'_CheckAlign(line(''.''))'."\<CR>\<END>"
     endif
   endfun
 
